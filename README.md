@@ -1,6 +1,16 @@
 # Booze Counter 9000 🍺
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+
 An advanced AI-powered beverage inventory management system that combines intelligent multi-modal data entry with an innovative book-style interface for professional inventory tracking and management.
+
+## 🚀 Live Demo
+
+**Try it now**: [BoozeCounter9000 on Replit](https://replit.com/@danielchillemi/BoozeCounter9000)
 
 ## 🚀 Features
 
@@ -73,8 +83,8 @@ booze-counter-9000/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/booze-counter-9000.git
-   cd booze-counter-9000
+   git clone https://github.com/Twigman12/BoozeCounter9000.git
+   cd BoozeCounter9000
    ```
 
 2. **Install dependencies**
