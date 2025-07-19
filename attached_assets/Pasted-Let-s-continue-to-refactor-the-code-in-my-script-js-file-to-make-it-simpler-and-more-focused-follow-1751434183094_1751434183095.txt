@@ -1,0 +1,32 @@
+Let's continue to refactor the code in my script.js file to make it simpler and more focused, following the Single Responsibility Principle.
+Our next target is the addItem() function. It currently handles getting user input, validating that input, updating the application's data (state), and triggering multiple UI updates.
+Please refactor this function by breaking its responsibilities into smaller, more focused pieces. Here is the desired structure:
+1. Create a New, Pure Data/Validation Function:
+Name: validateAndPrepareItem(product, quantityString)
+Purpose: This function's only job is to validate the inputs and, if they are valid, prepare a new item object. It should not modify any global state or touch the DOM.
+Arguments: It should accept two arguments:
+product: The currentSelectedProduct object.
+quantityString: The raw string value from the quantityInput field.
+Logic:
+It should perform validation to check if the product object is valid (not null) and if the quantityString can be parsed into a positive number (> 0).
+Return Value:
+If validation passes, it should create and return a new, fully formed inventory item object: { productId: product.barcode, productName: product.name, quantity: parseFloat(quantityString) }.
+If validation fails, it should return null.
+2. Create a New Controller Function (to replace addItem):
+Name: handleAddItem()
+Purpose: This function will act as a simple orchestrator or controller. Its job is to manage the flow between getting data, validating it, and updating the state and UI.
+Logic:
+It should get the currentSelectedProduct global variable and the string value from the quantityInput field.
+It should call our new validateAndPrepareItem() function, passing in the product and quantity string.
+It should then use an if/else statement to check the result:
+If validateAndPrepareItem() returns a valid newItem object (i.e., not null):
+It should push the newItem object to the inventoryItems array.
+It should call saveSessionToLocalStorage(inventoryItems) (if you've implemented this).
+It should call renderInventoryList() to update the UI.
+Finally, it should call resetInputFlow() to reset the UI for the next entry.
+Else (if the result is null):
+It should call the showToast() function (from our previous refactor) with an appropriate error message, like 'Invalid product or quantity.', and the type 'error'.
+3. Update the Event Listeners:
+Task: Please find the existing event listeners for the #add-item-btn button (on 'click') and the #quantity-input field (on 'keypress' for 'Enter').
+Action: Update both of these event listeners so that they now call the new handleAddItem() controller function instead of the old addItem function.
+Please apply this complete refactoring to the existing script.js code. The goal is to have the same application functionality but with a much cleaner, more maintainable, and more testable code structure.

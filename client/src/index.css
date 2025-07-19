@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Shadows+Into+Light&family=Architects+Daughter&display=swap');
+@import './styles/book-theme.css';
+@import './styles/notebook-paper.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Barcode Scanner Animation */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-scan {
+  animation: scan 2s ease-in-out infinite;
+}
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(121, 43%, 57%);
+  --secondary-foreground: hsl(60, 9.1%, 97.8%);
+  --accent: hsl(30, 100%, 49%);
+  --accent-foreground: hsl(60, 9.1%, 97.8%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom properties for inventory app */
+  --surface: hsl(0, 0%, 98%);
+  --on-surface: hsl(0, 0%, 13%);
+  --error: hsl(0, 75%, 42%);
+  
+  /* Authentic Notebook Paper Theme */
+  --paper-base: hsl(40, 35%, 97%);
+  --paper-shadow: hsl(35, 25%, 92%);
+  --ink-blue: hsl(220, 75%, 25%);
+  --ink-black: hsl(0, 0%, 15%);
+  --marker-yellow: hsl(55, 95%, 75%);
+  --marker-pink: hsl(330, 90%, 80%);
+  --marker-blue: hsl(200, 90%, 80%);
+  --marker-green: hsl(140, 70%, 80%);
+  --neon-accent: hsl(280, 100%, 65%);
+  --paper-line-blue: hsl(200, 60%, 50%);
+  --paper-margin-red: hsl(0, 70%, 55%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--surface);
+    color: var(--on-surface);
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+/* Notebook Paper Background for Simple Layout */
+.notebook-bg {
+  background-color: #fdfcf8;
+  background-image: 
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      #e5e7eb 31px,
+      #e5e7eb 32px
+    ),
+    linear-gradient(90deg, transparent 79px, #ef4444 79px, #ef4444 81px, transparent 81px);
+  background-size: 100% 100%, 100% 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Notebook Card Style */
+.notebook-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Handwritten Title Styles */
+.handwritten-title {
+  font-family: 'Permanent Marker', cursive;
+  color: #1e40af;
+  transform: rotate(-1deg);
+}
+
+.handwritten-text {
+  font-family: 'Architects Daughter', cursive;
+  color: #374151;
+}
+
+/* Mobile-friendly tab styles */
+@media (max-width: 640px) {
+  .handwritten-title {
+    font-size: 1.75rem;
+    transform: rotate(0deg);
+  }
+}
+
+@layer components {
+  .notepad-page {
+    background: var(--notepad-yellow);
+    background-image: 
+      linear-gradient(to right, var(--notepad-margin) 80px, transparent 80px),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 23px,
+        var(--notepad-line) 24px,
+        var(--notepad-line) 25px
+      );
+    box-shadow: 
+      0 2px 8px var(--notepad-shadow),
+      inset 0 0 0 1px hsla(0,0%,0%,0.05);
+    position: relative;
+  }
+  
+  .notepad-card {
+    background: var(--notepad-yellow);
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 19px,
+        var(--notepad-line) 20px,
+        var(--notepad-line) 20.5px
+      );
+    box-shadow: 
+      0 1px 3px var(--notepad-shadow),
+      inset 0 0 0 1px hsla(0,0%,0%,0.03);
+    border: none;
+  }
+  
+  .notepad-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    position: relative;
+  }
+  
+  .notepad-header::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 8px,
+      rgba(0,0,0,0.1) 8px,
+      rgba(0,0,0,0.1) 16px
+    );
+  }
+  
+  .handwritten-text {
+    font-family: 'Patrick Hand', 'Kalam', 'Caveat', cursive, sans-serif;
+    color: #1e3a8a;
+    line-height: 1.8;
+    transform: rotate(-0.3deg);
+    letter-spacing: 0.3px;
+    font-weight: 400;
+    text-shadow: 0.5px 0.5px 0px rgba(30, 58, 138, 0.1);
+  }
+  
+  .handwritten-text:nth-child(2n) {
+    transform: rotate(0.4deg);
+    font-family: 'Caveat', 'Patrick Hand', cursive;
+    letter-spacing: 0.2px;
+  }
+  
+  .handwritten-text:nth-child(3n) {
+    transform: rotate(-0.1deg);
+    font-family: 'Kalam', 'Patrick Hand', cursive;
+    letter-spacing: 0.4px;
+  }
+  
+  .handwritten-text:nth-child(4n) {
+    transform: rotate(0.2deg);
+    letter-spacing: 0.1px;
+  }
+  
+  h1.handwritten-text, h2.handwritten-text, h3.handwritten-text {
+    font-family: 'Caveat', 'Patrick Hand', cursive;
+    font-weight: 600;
+    transform: rotate(-0.2deg);
+  }
+  
+  .card-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ripple:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    animation: ripple-effect 0.6s ease-out;
+  }
+  
+  .voice-recording {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  .amplitude-bar {
+    transition: height 0.1s ease;
+    background: linear-gradient(to top, #f59e0b, #fbbf24);
+  }
+  
+  .bg-surface {
+    background-color: var(--surface);
+  }
+  
+  .text-on-surface {
+    color: var(--on-surface);
+  }
+  
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  
+  .text-primary {
+    color: var(--primary);
+  }
+  
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  
+  .text-secondary {
+    color: var(--secondary);
+  }
+  
+  .bg-accent {
+    background-color: var(--accent);
+  }
+  
+  .text-accent {
+    color: var(--accent);
+  }
+  
+  .bg-error {
+    background-color: var(--error);
+  }
+  
+  .text-error {
+    color: var(--error);
+  }
+}
+
+@layer utilities {
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes ripple-effect {
+    to {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}

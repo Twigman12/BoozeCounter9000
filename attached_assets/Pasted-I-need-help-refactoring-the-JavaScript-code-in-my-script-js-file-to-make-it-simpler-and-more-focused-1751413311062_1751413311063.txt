@@ -1,0 +1,26 @@
+I need help refactoring the JavaScript code in my script.js file to make it simpler and more focused.
+The current findProduct() function is doing too many things at once: it searches for data, it manages the UI display, and it sets global state.
+Please refactor this function by breaking it into smaller, single-responsibility functions. Here is the desired structure:
+1. Create a pure data-logic function named searchForProduct(query):
+This function should accept one argument: the query string.
+Its only job is to search the global products array.
+It should return the foundProduct object if a match is found, or null if no match is found.
+This function should not modify any global variables or touch the HTML DOM.
+2. Create a dedicated UI management function named updateProductUI(product):
+This function should accept one argument: a product object (which could be a product object or null).
+Its only job is to update the user interface based on the product that was passed in.
+If a product object is provided:
+* It should set the text content for productNameEl and productDetailsEl.
+* It should make the productDisplay and quantityInputArea visible.
+* It should set the focus on the quantityInput.
+If null is passed in:
+* It should display the "Product not found" message in the appropriate elements.
+* It should hide the quantityInputArea.
+3. Modify the original findProduct() function (or create a new handler):
+This function will now be very simple. It should act as a controller.
+It should get the value from the productInput field.
+It should call our new searchForProduct() function with the input value.
+It should set the currentSelectedProduct global variable with the result.
+It should then call our new updateProductUI() function, passing in the result from the search.
+Please apply this refactoring to the existing script.js code, making sure the event listeners for the 'Find Product' button and 'Enter' key are updated to use the new, simplified controller function."
+This prompt gives the AI clear instructions and a specific blueprint for what "good" looks like, mirroring exactly the kind of refinement that improves professional codebases. Good luck

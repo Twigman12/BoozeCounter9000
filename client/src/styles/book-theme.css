@@ -1,0 +1,461 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* Earth-tone color palette for a warm, professional look */
+:root {
+  /* Book & Paper Colors */
+  --book-cover: hsl(25, 45%, 35%);        /* Rich brown leather */
+  --book-spine: hsl(25, 50%, 25%);        /* Darker brown */
+  --page-edge: hsl(40, 30%, 85%);         /* Aged paper edge */
+  --page-bg: hsl(35, 40%, 97%);           /* Warm paper white */
+  --page-shadow: hsla(0, 0%, 0%, 0.2);    /* Page depth shadow */
+  
+  /* Ink & Text Colors */
+  --ink-primary: hsl(220, 50%, 20%);      /* Deep blue-black ink */
+  --ink-secondary: hsl(0, 0%, 25%);       /* Charcoal gray */
+  --ink-accent: hsl(10, 65%, 45%);        /* Warm red for highlights */
+  --ink-success: hsl(145, 55%, 35%);      /* Forest green */
+  --ink-warning: hsl(35, 70%, 45%);       /* Amber */
+  
+  /* UI Accent Colors */
+  --accent-gold: hsl(45, 85%, 55%);       /* Gold leaf accents */
+  --accent-copper: hsl(20, 75%, 50%);     /* Copper highlights */
+  --accent-bronze: hsl(30, 60%, 40%);     /* Bronze details */
+  
+  /* Subtle Neutrals */
+  --neutral-50: hsl(30, 20%, 98%);
+  --neutral-100: hsl(30, 20%, 96%);
+  --neutral-200: hsl(30, 20%, 92%);
+  --neutral-300: hsl(30, 15%, 85%);
+  --neutral-400: hsl(30, 10%, 70%);
+  --neutral-500: hsl(30, 10%, 50%);
+}
+
+/* Book container styling */
+.book-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(ellipse at center, var(--neutral-100) 0%, var(--neutral-200) 100%);
+  perspective: 2000px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Realistic book shadow on surface */
+.book-shadow {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 20px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, transparent 70%);
+  filter: blur(15px);
+}
+
+/* Page styling for react-pageflip */
+.book-page {
+  background: var(--page-bg);
+  box-shadow: 
+    inset 0 0 30px rgba(0,0,0,0.05),
+    0 0 5px rgba(0,0,0,0.1);
+  padding: 60px 50px;
+  font-family: 'Crimson Text', 'Georgia', serif;
+  color: var(--ink-primary);
+  line-height: 1.8;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+/* Page texture overlay */
+.book-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      hsla(200, 30%, 50%, 0.08) 31px,
+      hsla(200, 30%, 50%, 0.08) 32px
+    );
+  pointer-events: none;
+}
+
+/* Page numbers */
+.page-number {
+  position: absolute;
+  bottom: 30px;
+  font-family: 'Crimson Text', serif;
+  font-size: 14px;
+  color: var(--ink-secondary);
+}
+
+.page-number-left {
+  left: 50px;
+}
+
+.page-number-right {
+  right: 50px;
+}
+
+/* Book cover styling */
+.book-cover {
+  background: 
+    linear-gradient(135deg, var(--book-cover) 0%, var(--book-spine) 50%, var(--book-cover) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--accent-gold);
+  text-align: center;
+  padding: 40px;
+}
+
+/* Gold embossing effect for cover text */
+.book-title {
+  font-family: 'Cinzel Decorative', 'Georgia', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.5),
+    0 0 20px rgba(255,215,0,0.3);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.book-subtitle {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Chapter headers */
+.chapter-header {
+  font-family: 'Cinzel', serif;
+  font-size: 2.5rem;
+  color: var(--ink-accent);
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.chapter-header::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+}
+
+/* Section styling */
+.book-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.8rem;
+  color: var(--ink-primary);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Decorative elements */
+.ornament {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--accent-gold);
+  margin: 30px 0;
+  opacity: 0.7;
+}
+
+/* Interactive elements styling */
+.book-button {
+  background: linear-gradient(135deg, var(--accent-copper), var(--accent-bronze));
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.book-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 12px rgba(0,0,0,0.3),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+.book-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(0,0,0,0.1);
+}
+
+/* Input fields styled like handwritten notes */
+.book-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed var(--ink-secondary);
+  padding: 8px 4px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1.1rem;
+  color: var(--ink-primary);
+  transition: border-color 0.3s ease;
+}
+
+.book-input:focus {
+  outline: none;
+  border-color: var(--ink-accent);
+}
+
+/* Card styling for data display */
+.book-card {
+  background: var(--neutral-50);
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.book-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-gold), var(--accent-copper), var(--accent-bronze));
+  border-radius: 8px 8px 0 0;
+}
+
+/* Navigation tabs */
+.book-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--neutral-300);
+}
+
+.book-tab {
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.book-tab:hover {
+  color: var(--ink-primary);
+}
+
+.book-tab.active {
+  color: var(--ink-accent);
+}
+
+.book-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink-accent);
+}
+
+/* Animations */
+@keyframes page-turn {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(-180deg); }
+}
+
+@keyframes gold-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-text {
+  background: linear-gradient(
+    90deg,
+    var(--accent-gold) 0%,
+    var(--accent-copper) 25%,
+    var(--accent-gold) 50%,
+    var(--accent-copper) 75%,
+    var(--accent-gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .book-container {
+    padding: 10px;
+  }
+  
+  /* Adjust book pages for mobile */
+  .book-page {
+    padding: 30px 20px;
+  }
+  
+  .page-number-left {
+    left: 20px;
+  }
+  
+  .page-number-right {
+    right: 20px;
+  }
+  
+  /* Smaller typography on mobile */
+  .chapter-header {
+    font-size: 1.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+  
+  .book-title {
+    font-size: 2rem;
+  }
+  
+  .book-subtitle {
+    font-size: 1rem;
+  }
+  
+  /* Adjust button sizes */
+  .book-button {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+  
+  /* Stack navigation buttons vertically */
+  .fixed.top-8.left-8 {
+    flex-direction: column;
+    gap: 8px;
+    top: 10px;
+    left: 10px;
+  }
+  
+  /* Smaller page indicator */
+  .fixed.top-8.right-8 {
+    top: 10px;
+    right: 10px;
+    font-size: 0.875rem;
+  }
+  
+  /* Hide page flip arrows on mobile - use swipe */
+  button[class*="translate-y-1/2"] {
+    display: none;
+  }
+  
+  /* Adjust table of contents */
+  .book-page button {
+    padding: 10px 8px;
+    font-size: 0.875rem;
+  }
+  
+  /* Barcode scanner tabs */
+  .book-page > div > div.flex.gap-2 button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ultra compact for small phones */
+  .book-page {
+    padding: 20px 15px;
+  }
+  
+  .chapter-header {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.1rem;
+  }
+  
+  .book-title {
+    font-size: 1.75rem;
+  }
+  
+  /* Reduce form spacing */
+  .space-y-4 > * {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Compact cards */
+  .book-card {
+    padding: 12px;
+  }
+  
+  /* Single column layout for navigation */
+  .fixed.top-8.left-8 {
+    position: fixed;
+    bottom: 20px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    background: var(--page-bg);
+    padding: 8px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+}
+
+/* Touch-friendly mobile styles */
+@media (pointer: coarse) {
+  /* Larger touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* More spacing for touch */
+  .space-y-2 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  /* Bigger form elements */
+  input, select, textarea {
+    min-height: 44px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}

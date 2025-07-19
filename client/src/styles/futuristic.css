@@ -1,0 +1,372 @@
+/* Futuristic Paper UI Design System */
+
+/* Import marker fonts */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Shadows+Into+Light&family=Architects+Daughter&display=swap');
+
+/* Authentic notebook paper texture */
+.paper-texture {
+  position: relative;
+  background: 
+    /* Notebook ruled lines */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 31px,
+      hsla(200, 60%, 50%, 0.15) 31px,
+      hsla(200, 60%, 50%, 0.15) 32px
+    ),
+    /* Red margin line */
+    linear-gradient(
+      90deg,
+      transparent 80px,
+      hsla(0, 70%, 55%, 0.25) 80px,
+      hsla(0, 70%, 55%, 0.25) 82px,
+      transparent 82px
+    ),
+    /* Paper fibers - horizontal */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 5px,
+      hsla(35, 30%, 75%, 0.03) 5px,
+      hsla(35, 30%, 75%, 0.03) 10px
+    ),
+    /* Paper fibers - vertical */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 7px,
+      hsla(35, 30%, 75%, 0.02) 7px,
+      hsla(35, 30%, 75%, 0.02) 14px
+    ),
+    /* Subtle paper texture noise */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>'),
+    /* Base notebook paper color */
+    linear-gradient(135deg, hsl(40, 35%, 97%) 0%, hsl(45, 30%, 95%) 100%);
+  
+  /* Paper depth and shadow */
+  box-shadow: 
+    inset 0 0 60px hsla(35, 25%, 60%, 0.06),
+    inset 2px 2px 5px hsla(0, 0%, 0%, 0.02),
+    0 25px 50px hsla(0, 0%, 0%, 0.08);
+  
+  /* Three-hole punch marks */
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 15%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 0 2px hsla(0, 0%, 0%, 0.1),
+      0 250px 0 2px hsla(0, 0%, 0%, 0.1),
+      0 500px 0 2px hsla(0, 0%, 0%, 0.1);
+    background: hsla(0, 0%, 100%, 0.8);
+    pointer-events: none;
+  }
+}
+
+/* Fresh marker typography */
+.marker-title {
+  font-family: 'Permanent Marker', cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(-2deg);
+  text-shadow: 
+    3px 3px 0 hsla(0, 0%, 0%, 0.05),
+    4px 4px 8px hsla(0, 0%, 0%, 0.1);
+  color: hsl(220, 85%, 15%);
+}
+
+.marker-text {
+  font-family: 'Architects Daughter', cursive;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  color: hsl(220, 70%, 20%);
+}
+
+.sketch-text {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.1em;
+  letter-spacing: 0.05em;
+  color: hsl(220, 60%, 30%);
+}
+
+/* Highlighter effects */
+.highlight {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.highlight-yellow::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  left: -0.2em;
+  right: -0.2em;
+  height: 0.8em;
+  background: hsla(55, 100%, 70%, 0.4);
+  transform: translateY(-50%) rotate(-1deg) skewX(-15deg);
+  z-index: -1;
+  filter: blur(2px);
+}
+
+.highlight-pink::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  left: -0.2em;
+  right: -0.2em;
+  height: 0.8em;
+  background: hsla(330, 100%, 70%, 0.3);
+  transform: translateY(-50%) rotate(0.5deg) skewX(10deg);
+  z-index: -1;
+  filter: blur(2px);
+}
+
+.highlight-blue::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  left: -0.2em;
+  right: -0.2em;
+  height: 0.8em;
+  background: hsla(200, 100%, 70%, 0.3);
+  transform: translateY(-50%) rotate(-0.5deg) skewX(-10deg);
+  z-index: -1;
+  filter: blur(2px);
+}
+
+/* Futuristic card designs */
+.future-card {
+  position: relative;
+  background: hsla(0, 0%, 100%, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid hsla(280, 100%, 70%, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.future-card::before {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    hsla(280, 100%, 70%, 0.1) 50%,
+    transparent 70%
+  );
+  animation: holographic 8s linear infinite;
+  pointer-events: none;
+}
+
+.future-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 40px hsla(280, 100%, 50%, 0.15),
+    0 10px 20px hsla(0, 0%, 0%, 0.1);
+  border-color: hsla(280, 100%, 70%, 0.4);
+}
+
+@keyframes holographic {
+  0% { transform: rotate(0deg) translateX(-100%); }
+  100% { transform: rotate(360deg) translateX(100%); }
+}
+
+/* Glass morphism elements */
+.glass-panel {
+  background: hsla(0, 0%, 100%, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid hsla(0, 0%, 100%, 0.3);
+  box-shadow: 
+    0 8px 32px hsla(0, 0%, 0%, 0.1),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.5);
+}
+
+/* Neon accents */
+.neon-glow {
+  box-shadow: 
+    0 0 20px hsla(280, 100%, 65%, 0.5),
+    inset 0 0 20px hsla(280, 100%, 65%, 0.1);
+  border: 1px solid hsla(280, 100%, 65%, 0.5);
+}
+
+.neon-text {
+  color: hsl(280, 100%, 65%);
+  text-shadow: 
+    0 0 10px hsla(280, 100%, 65%, 0.8),
+    0 0 20px hsla(280, 100%, 65%, 0.6),
+    0 0 30px hsla(280, 100%, 65%, 0.4);
+}
+
+/* Interactive button styles */
+.future-button {
+  position: relative;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, hsl(280, 100%, 65%), hsl(180, 100%, 50%));
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.future-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: hsla(0, 0%, 100%, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.future-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 30px hsla(280, 100%, 50%, 0.3),
+    0 5px 15px hsla(0, 0%, 0%, 0.2);
+}
+
+.future-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Sketch-style borders */
+.sketch-border {
+  border: 2px solid hsl(220, 70%, 20%);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  position: relative;
+}
+
+/* Paper fold effect */
+.paper-fold {
+  position: relative;
+  background: hsl(45, 25%, 96%);
+  box-shadow: 
+    0 10px 30px hsla(0, 0%, 0%, 0.1),
+    inset 0 1px 0 hsla(0, 0%, 100%, 0.5);
+}
+
+.paper-fold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: 
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      hsl(45, 20%, 88%) 50%,
+      hsl(45, 25%, 96%)
+    );
+  border-radius: 0 0 0 5px;
+}
+
+/* Animated underlines */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(280, 100%, 65%), hsl(180, 100%, 50%), hsl(330, 100%, 65%));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Performance-optimized animations */
+.pulse-glow {
+  animation: pulse 2s ease-in-out infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+/* Optimize glass panels for performance */
+.glass-panel {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Reduce paint areas */
+.future-card,
+.marker-text,
+.sketch-text {
+  contain: layout style paint;
+}
+
+/* Optimize hover states */
+.future-card:hover,
+.glass-panel:hover,
+.future-button:hover {
+  will-change: transform, box-shadow;
+}
+
+/* Disable animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .marker-title {
+    font-size: 1.5rem;
+  }
+  
+  .future-card {
+    border-radius: 15px;
+  }
+  
+  .future-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
